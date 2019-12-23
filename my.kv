@@ -1,0 +1,199 @@
+<CreateAccountWindow>:
+    name: "create"
+
+    namee: namee
+    email: email
+    password: passw
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Image:
+                source: 'images/register.png'
+                size_hint_y: None  # Tells the layout to ignore the size_hint in y dir
+                height: dp(300)  # The fixed height you want
+                pos_hint: {"x":0, "top":0.9455}
+
+            Label:
+                text: "Create an Account"
+                size_hint: 0.8, 0.2
+                pos_hint: {"x":0.23, "top":0.82}
+                font_size: (root.width**2 + root.height**2) / 16**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0.1, "top":0.69}
+                text: "Name: "
+                font_size: (root.width**2 + root.height**2) / 17**4
+
+            TextInput:
+                pos_hint: {"x":0.45, "top":0.65}
+                size_hint: 0.35, 0.05
+                id: namee
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 17**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0.1, "top":0.69-0.06}
+                text: "Email: "
+                font_size: (root.width**2 + root.height**2) / 17**4
+
+            TextInput:
+                pos_hint: {"x":0.45, "top":0.65-0.06}
+                size_hint: 0.35, 0.05
+                id: email
+                multiline: False
+                font_size: (root.width**2 + root.height**2) / 17**4
+
+            Label:
+                size_hint: 0.5,0.12
+                pos_hint: {"x":0.1, "top":0.69-0.06*2}
+                text: "Password: "
+                font_size: (root.width**2 + root.height**2) / 17**4
+
+            TextInput:
+                pos_hint: {"x":0.45, "top":0.65-0.06*2}
+                size_hint: 0.35, 0.05
+                id: passw
+                multiline: False
+                password: True
+                font_size: (root.width**2 + root.height**2) / 17**4
+
+        Button:
+            pos_hint:{"x":0.37,"y":0.35}
+            size_hint: 0.25, 0.03
+            font_size: (root.width**2 + root.height**2) / 18**4
+            text: "Already have an Account? Log In"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            pos_hint:{"x":0.4,"y":0.4}
+            size_hint: 0.2, 0.04
+            text: "Submit"
+            font_size: (root.width**2 + root.height**2) / 16**4
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+
+<LoginWindow>:
+    name: "login"
+
+    email: email
+    password: password
+
+    FloatLayout:
+
+        Image:
+            source: 'images/welcome.png'
+            size_hint_y: None  # Tells the layout to ignore the size_hint in y dir
+            height: dp(200)  # The fixed height you want
+            pos_hint: {"x":0.1, "top":0.88}
+
+        Image:
+            source: 'images/logo.png'
+            size_hint_y: None  # Tells the layout to ignore the size_hint in y dir
+            height: dp(400)  # The fixed height you want
+            pos_hint: {"x":0.20, "top":0.75}
+
+        Label:
+            text:"Email: "
+            font_size: (root.width**2 + root.height**2) / 17**4
+            pos_hint: {"x":0.1, "top":0.75}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: email
+            font_size: (root.width**2 + root.height**2) / 17**4
+            multiline: False
+            pos_hint: {"x": 0.45 , "top":0.7}
+            size_hint: 0.35, 0.05
+
+        Label:
+            text:"Password: "
+            font_size: (root.width**2 + root.height**2) / 17**4
+            pos_hint: {"x":0.1, "top":0.7}
+            size_hint: 0.35, 0.15
+
+        TextInput:
+            id: password
+            font_size: (root.width**2 + root.height**2) / 17**4
+            multiline: False
+            password: True
+            pos_hint: {"x": 0.45, "top":0.65}
+            size_hint: 0.35, 0.05
+
+        Button:
+            pos_hint:{"x":0.4,"y":0.5}
+            size_hint: 0.2, 0.04
+            font_size: (root.width**2 + root.height**2) / 16**4
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.login_btn()
+
+        Button:
+            pos_hint:{"x":0.37,"y":0.45}
+            size_hint: 0.25, 0.03
+            font_size: (root.width**2 + root.height**2) / 18**4
+            text: "Don't have an Account? Create One"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.create_btn()
+
+
+<MainWindow>:
+    n: n
+    email: email
+    created: created
+    clndr: clndr
+    localtime: localtime
+
+    FloatLayout:
+
+        Label:
+            id: localtime
+            pos_hint:{"x": 0.08, "top":1}
+            font_size: 20
+            size_hint:0.9, 0.4
+            text: "Time: "
+            color: 1,0,1,1
+
+        Label:
+            id: clndr
+            pos_hint:{"x": 0.3, "top":0.65}
+            size_hint:0.8, 0.2
+            text: "Calendar"
+
+        Label:
+            id: n
+            bold: bool
+            pos_hint:{"x": 0.01, "top":0.7}
+            size_hint:0.8, 0.2
+            text: "Account Name: "
+
+        Label:
+            id: email
+            pos_hint:{"x": 0.01, "top":0.65}
+            size_hint:0.8, 0.2
+            text: "Email: "
+
+        Label:
+            id: created
+            pos_hint:{"x": 0.01, "top":0.6}
+            size_hint:0.8, 0.2
+            text: "Created: "
+
+        Button:
+            pos_hint:{"x":0.4,"y":0.2}
+            size_hint:0.2, 0.04
+            text: "Log Out"
+            on_release:
+                app.root.current = "login"
+                root.manager.transition.direction = "down"
